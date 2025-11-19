@@ -1,0 +1,411 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroMarket - Sistema de Agronomía</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">AgroMarket</span>
+            </div>
+            <div class="nav-buttons">
+                {% if user.is_authenticated %}
+                    <button class="btn btn-perfil">
+                        <span>👤</span> {{ user.first_name|default:user.email }}
+                    </button>
+                    <a href="{% url 'logout' %}" class="btn btn-register">
+                        <span>🚪</span> Cerrar Sesión
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-login">
+                        <span>👤</span> Iniciar Sesión
+                    </a>
+                    <a href="{% url 'signup' %}" class="btn btn-register">
+                        <span>✨</span> Registrarse
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Productos Frescos Directamente del Campo</h1>
+            <p>Conectamos productores locales con tu mesa. Productos de los mejores sistemas de producción agrícola del Ecuador.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Productos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Productores</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Disponible</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="floating-element">🌾</div>
+            <div class="floating-element">🥬</div>
+            <div class="floating-element">🐟</div>
+        </div>
+    </section>
+
+    <main class="productos-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Productos Destacados</h2>
+            <p class="section-subtitle">Calidad garantizada directamente desde nuestros productores locales</p>
+        </div>
+
+        <section class="categoria" id="acuicola">
+            <div class="categoria-header">
+                <div>
+                    <h3 class="categoria-title">Productos Acuícolas</h3>
+                    <p class="categoria-desc">Criados en ambientes controlados con los más altos estándares</p>
+                </div>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-badge">Bestseller</div>
+                    <div class="producto-imagen" id="img-tilapia"></div>
+                    <div class="producto-info">
+                        <h4>Tilapia Fresca</h4>
+                        <p class="descripcion">Tilapia de cultivo sostenible, criada en estanques controlados con alimentación balanceada y agua de calidad premium.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Orgánico</span>
+                            <span class="feature">✓ Fresco</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$5.50</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-badge premium">Premium</div>
+                    <div class="producto-imagen" id="img-camaron"></div>
+                    <div class="producto-info">
+                        <h4>Camarón de Cultivo</h4>
+                        <p class="descripcion">Camarones frescos de piscinas acuícolas, libres de antibióticos y hormonas, alimentados naturalmente.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Sin químicos</span>
+                            <span class="feature">✓ Premium</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$12.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-imagen" id="img-trucha"></div>
+                    <div class="producto-info">
+                        <h4>Trucha Arcoíris</h4>
+                        <p class="descripcion">Trucha de agua dulce, criada en sistemas de recirculación con agua de montaña purificada constantemente.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Agua pura</span>
+                            <span class="feature">✓ Delicioso</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$8.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ver-mas-container">
+                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+            </div>
+
+        </section>
+
+        <section class="categoria" id="pesquero">
+            <div class="categoria-header">
+                <div>
+                    <h3 class="categoria-title">Productos Pesqueros</h3>
+                    <p class="categoria-desc">Capturados con técnicas artesanales y sostenibles</p>
+                </div>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-badge premium">Premium</div>
+                    <div class="producto-imagen" id="img-atun"></div>
+                    <div class="producto-info">
+                        <h4>Atún Fresco</h4>
+                        <p class="descripcion">Atún capturado en mar abierto con técnicas de pesca responsable, respetando los ciclos naturales del océano.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Sostenible</span>
+                            <span class="feature">✓ Omega 3</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$15.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-badge">Exclusivo</div>
+                    <div class="producto-imagen" id="img-langosta"></div>
+                    <div class="producto-info">
+                        <h4>Langosta</h4>
+                        <p class="descripcion">Langosta fresca del Pacífico, capturada artesanalmente respetando temporadas y tallas mínimas.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Artesanal</span>
+                            <span class="feature">✓ Gourmet</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$25.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-imagen" id="img-calamar"></div>
+                    <div class="producto-info">
+                        <h4>Calamar</h4>
+                        <p class="descripcion">Calamar fresco de pesca diaria, ideal para preparaciones gourmet y recetas tradicionales ecuatorianas.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Fresco diario</span>
+                            <span class="feature">✓ Versátil</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$7.50</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ver-mas-container">
+                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+            </div>
+
+        </section>
+
+        <section class="categoria" id="ganadero">
+            <div class="categoria-header">
+                <div>
+                    <h3 class="categoria-title">Productos Ganaderos</h3>
+                    <p class="categoria-desc">De ganado criado en pastoreo libre y natural</p>
+                </div>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-badge premium">Premium</div>
+                    <div class="producto-imagen" id="img-carne"></div>
+                    <div class="producto-info">
+                        <h4>Carne de Res Premium</h4>
+                        <p class="descripcion">Cortes selectos de ganado alimentado con pasto natural, sin hormonas de crecimiento ni antibióticos.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Grass-fed</span>
+                            <span class="feature">✓ Sin hormonas</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$9.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-badge">Bestseller</div>
+                    <div class="producto-imagen" id="img-leche"></div>
+                    <div class="producto-info">
+                        <h4>Leche Fresca</h4>
+                        <p class="descripcion">Leche pasteurizada de vacas de pastoreo libre, rica en nutrientes naturales y proteínas de alta calidad.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Pasteurizada</span>
+                            <span class="feature">✓ Natural</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$1.20</span>
+                                <span class="precio-unit">/litro</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-imagen" id="img-queso"></div>
+                    <div class="producto-info">
+                        <h4>Queso Artesanal</h4>
+                        <p class="descripcion">Queso fresco elaborado tradicionalmente con leche de vaca de la región, siguiendo recetas ancestrales.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Artesanal</span>
+                            <span class="feature">✓ Tradicional</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$6.50</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ver-mas-container">
+                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+            </div>
+
+        </section>
+
+        <section class="categoria" id="vegetal">
+            <div class="categoria-header">
+                <div>
+                    <h3 class="categoria-title">Productos Vegetales</h3>
+                    <p class="categoria-desc">Cultivados con técnicas orgánicas y sostenibles</p>
+                </div>
+            </div>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-badge">Orgánico</div>
+                    <div class="producto-imagen" id="img-zanahoria"></div>
+                    <div class="producto-info">
+                        <h4>Zanahorias Orgánicas</h4>
+                        <p class="descripcion">Zanahorias cultivadas sin pesticidas químicos, cosechadas en su punto óptimo de maduración y sabor.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ 100% Orgánico</span>
+                            <span class="feature">✓ Sin pesticidas</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$2.00</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-badge">Bestseller</div>
+                    <div class="producto-imagen" id="img-tomate"></div>
+                    <div class="producto-info">
+                        <h4>Tomates de Invernadero</h4>
+                        <p class="descripcion">Tomates cultivados en invernadero con sistemas de riego por goteo, fertirrigación y control climático.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Invernadero</span>
+                            <span class="feature">✓ Jugosos</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$2.50</span>
+                                <span class="precio-unit">/kg</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto-card">
+                    <div class="producto-badge premium">Premium</div>
+                    <div class="producto-imagen" id="img-lechuga"></div>
+                    <div class="producto-info">
+                        <h4>Lechuga Hidropónica</h4>
+                        <p class="descripcion">Lechuga fresca cultivada en sistema hidropónico, libre de tierra, contaminantes y con nutrición controlada.</p>
+                        <div class="producto-features">
+                            <span class="feature">✓ Hidropónico</span>
+                            <span class="feature">✓ Ultra limpio</span>
+                        </div>
+                        <div class="producto-footer">
+                            <div class="precio-container">
+                                <span class="precio">$1.80</span>
+                                <span class="precio-unit">/unidad</span>
+                            </div>
+                            <button class="btn-comprar">
+                                <span>🛒</span> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ver-mas-container">
+                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+            </div>
+
+        </section>
+    </main>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-button">
+            <span class="chatbot-icon">💬</span>
+        </div>
+        <div class="chatbot-tooltip">¿Necesitas ayuda?</div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🌱 AgroMarket</h4>
+                <p>Conectando el campo con tu hogar desde 2025</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📧 info@agromarket.ec</p>
+                <p>📱 +593 99 123 4567</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <p>Facebook | Instagram | Twitter</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AgroMarket - Sistema de Agronomía. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
