@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (type === 'bot') {
             const avatar = document.createElement('div');
             avatar.classList.add('chatbot-avatar');
-            avatar.textContent = '🤖';
+            avatar.textContent = '֎';
             msg.appendChild(avatar);
         }
 
