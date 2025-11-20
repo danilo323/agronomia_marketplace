@@ -51,9 +51,8 @@ INSTALLED_APPS = [
 
     #Proveedores de Google
     'allauth.socialaccount.providers.google',
-
-    
     'web',
+    'chatbot',
 
 ]
 
