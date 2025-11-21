@@ -90,6 +90,8 @@ def signup_view(request):
                 password=password,
                 first_name=first_name
             )
+            # Crear perfil con auth_provider='email'
+            Profile.objects.get_or_create(user=user, defaults={'auth_provider': 'email'})
         except IntegrityError:
             messages.error(request, 'Error al crear la cuenta.')
             return redirect('signup')
@@ -116,6 +118,11 @@ def user_profile(request):
         # A) CAMBIO DE CONTRASEÑA
         # ----------------------------------------------------
         if form_type == "password_change":
+            # Validar que no sea usuario de Google
+            if profile.auth_provider == 'google':
+                messages.error(request, 'No puedes cambiar tu contraseña porque iniciaste sesión con Google. Usa Google para autenticarte.')
+                return redirect("user")
+            
             current_password = request.POST.get("current-password")
             new_password = request.POST.get("new-password")
             confirm_password = request.POST.get("confirm-password")

@@ -466,7 +466,7 @@ nav {
 .chatbot-launcher {
     position: fixed;
     bottom: 0;
-    right: 40px;
+    left: 40px;
     background: #4c8df5;
     color: #ffffff;
     border-radius: 16px 16px 0 0;
@@ -495,7 +495,7 @@ nav {
 .chatbot-window {
     position: fixed;
     bottom: 80px;
-    right: 40px;
+    left: 40px;
     width: 360px;
     max-height: 520px;
     background: #ffffff;

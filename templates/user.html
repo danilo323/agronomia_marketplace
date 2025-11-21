@@ -143,21 +143,5 @@
     <!-- Script vinculado -->
     <script src="{% static 'js/user_script.js' %}"></script>
 
-    <script>
-        // Botón que abre el selector de imagen
-        document.getElementById("btn-change-photo").addEventListener("click", () => {
-            document.getElementById("profile-input").click();
-        });
-
-        // Previsualización inmediata de imagen
-        document.getElementById("profile-input").addEventListener("change", function(){
-            const img = document.getElementById("profile-image");
-            const file = this.files[0];
-            if(file){
-                img.src = URL.createObjectURL(file);
-            }
-        });
-    </script>
-
 </body>
 </html>

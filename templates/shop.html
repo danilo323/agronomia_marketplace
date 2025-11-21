@@ -14,7 +14,7 @@
             
         <a href="{% url 'home' %}" class="back-btn">⬅ Volver al inicio</a>
 
-        <h2>🛍 Catálogo de productos</h2>
+        <h2>Catálogo de productos</h2>
         
         <!-- Buscador -->
         <form method="GET" class="search-box">
@@ -73,7 +73,6 @@
     
 </div>
 
-<!-- 🔥 BOTÓN FLOTANTE CORRECTAMENTE POSICIONADO -->
 {% if request.resolver_match.url_name != "user" %}
 <a href="{% url 'cart' %}" 
     class="floating-cart-btn {% if cart_count > 0 %}cart-pulse{% endif %}">

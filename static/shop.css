@@ -1,9 +1,26 @@
 /* =====================================================
-   NAMESPACE SHOP
+   RESET Y CONFIGURACIÓN BASE
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+}
+
+/* =====================================================
+   SHOP PAGE
 ===================================================== */
 
 .shop-page {
-    background: #fafafa;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
     padding-top: 120px;
     min-height: 100vh;
 }
@@ -11,37 +28,57 @@
 /* Contenedor */
 .shop-page .shop-container {
     width: 90%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: auto;
     padding-bottom: 60px;
 }
 
 /* TÍTULO */
 .shop-page h2 {
-    font-size: 32px;
+    font-size: 3rem;
     font-weight: 700;
-    margin: 20px 0 15px 0;
-    color: #333;
+    margin: 20px 0 30px 0;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    padding-bottom: 15px;
+}
+
+.shop-page h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(255,255,255,0.6);
 }
 
 /* BOTÓN VOLVER */
 .shop-page .back-btn {
-    display: inline-block;
-    padding: 10px 22px;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
-    color: white;
-    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    margin-bottom: 30px;
+    background: white;
+    color: #11998e;
+    border-radius: 30px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95rem;
-    box-shadow: 0px 4px 10px rgba(17,153,142,0.3);
-    transition: .2s;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
 }
 
 .shop-page .back-btn:hover {
-    opacity: 0.85;
-    transform: translateX(-3px);
+    background: #f0f0f0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(255,255,255,0.4);
 }
 
 /* BUSCADOR */
@@ -49,121 +86,211 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 25px 0;
+    margin: 40px 0;
 }
 
 .shop-page .search-box input {
-    width: 300px;
-    padding: 12px 16px;
+    width: 400px;
+    padding: 14px 20px;
     border-radius: 30px;
-    border: 1px solid #ddd;
+    border: 2px solid white;
     font-size: 1rem;
-    transition: .2s;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    background: rgba(255,255,255,0.9);
+    color: #2c3e50;
 }
 
 .shop-page .search-box input:focus {
-    border-color: #38ef7d;
-    box-shadow: 0 0 8px rgba(56,239,125,0.5);
+    outline: none;
+    border-color: white;
+    background: white;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
 }
 
-/* Categorías */
+.shop-page .search-box input::placeholder {
+    color: #666;
+}
+
+.shop-page .search-box button {
+    padding: 14px 30px;
+    background: white;
+    color: #11998e;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+}
+
+.shop-page .search-box button:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255,255,255,0.4);
+}
+
+/* CATEGORÍAS */
+.shop-page .category-wrapper {
+    margin-bottom: 50px;
+}
+
 .shop-page .category-container {
     display: flex;
-    gap: 35px;
+    gap: 30px;
     flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 25px;
 }
 
 .shop-page .category-item {
     text-align: center;
     text-decoration: none;
-    color: #333;
-    width: 110px;
-    transition: .2s;
+    color: #ffffff;
+    width: 120px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.shop-page .category-item:hover {
+    transform: translateY(-5px);
+}
+
+.shop-page .category-badge {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.4);
 }
 
 .shop-page .category-img {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 4px solid white;
+    box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
 }
 
-/* Grid */
+.shop-page .category-item:hover .category-img {
+    box-shadow: 0 8px 30px rgba(255,255,255,0.5);
+    border-color: white;
+    transform: scale(1.05);
+}
+
+.shop-page .category-name {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* GRID DE PRODUCTOS */
 .shop-page .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 40px;
 }
 
-/* Tarjeta */
+/* TARJETA DE PRODUCTO */
 .shop-page .product-card {
     background: white;
-    padding: 15px;
     border-radius: 20px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    transition: .25s;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
-    animation: fadeUp .45s forwards;
+    animation: fadeUp 0.6s forwards;
 }
 
 @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .shop-page .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(46, 204, 113, 0.2);
 }
 
 .shop-page .product-card img {
     width: 100%;
-    height: 170px;
-    border-radius: 15px;
+    height: 250px;
     object-fit: cover;
+    background-color: #f0f0f0;
+    position: relative;
 }
 
-/* Nombre */
+/* INFO DEL PRODUCTO */
+.shop-page .product-card > div {
+    padding: 1.8rem;
+}
+
 .shop-page .product-name {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 12px;
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
 }
 
-/* Precio */
 .shop-page .product-price {
-    font-size: 1.1rem;
-    color: #11998e;
-    font-weight: bold;
-    margin: 5px 0;
+    font-size: 2rem;
+    color: #27ae60;
+    font-weight: 800;
+    margin: 0.8rem 0;
 }
 
-/* Descripción */
 .shop-page .product-description {
-    color: #555;
-    min-height: 45px;
-    font-size: 0.9rem;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    min-height: 60px;
+    margin-bottom: 1.2rem;
 }
 
-/* BOTÓN AÑADIR */
+/* BOTÓN AÑADIR AL CARRITO */
 .shop-page .add-cart-btn {
-    margin-top: 10px;
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    padding: 0.9rem 1.5rem;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
     border: none;
-    border-radius: 30px;
+    border-radius: 12px;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(56,239,125,0.3);
-    transition: .2s;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
 }
 
 .shop-page .add-cart-btn:hover {
-    opacity: 0.85;
+    background: linear-gradient(135deg, #229954, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.shop-page .add-cart-btn:active {
+    transform: translateY(0);
 }
 
 /* =====================================================
@@ -172,7 +299,7 @@
 
 .floating-cart-btn {
     position: fixed;
-    bottom: 140px;         /* ajustado para no tapar al asistente virtual */
+    bottom: 140px;
     right: 25px;
     width: 60px;
     height: 60px;
@@ -185,13 +312,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     box-shadow: 0px 6px 18px rgba(17,153,142,0.4);
     transition: 0.25s ease;
     z-index: 9999;
 }
 
-/* Hover */
 .floating-cart-btn:hover {
     transform: scale(1.12);
     box-shadow: 0px 8px 25px rgba(17,153,142,0.55);
@@ -222,4 +347,77 @@
     font-weight: bold;
     border: 2px solid white;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+    .shop-page {
+        padding-top: 100px;
+    }
+
+    .shop-page h2 {
+        font-size: 2rem;
+    }
+
+    .shop-page .search-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shop-page .search-box input {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .shop-page .search-box button {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .shop-page .category-container {
+        gap: 20px;
+    }
+
+    .shop-page .product-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .floating-cart-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        bottom: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shop-page .shop-container {
+        width: 95%;
+    }
+
+    .shop-page h2 {
+        font-size: 1.8rem;
+    }
+
+    .shop-page .back-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .shop-page .category-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .shop-page .product-name {
+        font-size: 1.3rem;
+    }
+
+    .shop-page .product-price {
+        font-size: 1.6rem;
+    }
 }

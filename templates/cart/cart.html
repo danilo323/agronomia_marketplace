@@ -2,10 +2,9 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
     <link rel="stylesheet" href="{% static 'cart.css' %}">
-    <a href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}{% url 'shop' %}{% endif %}" 
-        class="back-btn">
+    <button class="back-btn" onclick="history.back()">
         ⬅ Regresar
-    </a>
+    </button>
     <div class="cart-container">
 
         <h2 class="cart-title">🛒 Carrito de Compras</h2>
