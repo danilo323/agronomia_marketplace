@@ -29,6 +29,7 @@ urlpatterns = [
 
     #google 
     path('accounts/', include('allauth.urls')),
+    #App productos RD
     path('', include('productos.urls')),
 ]
 
