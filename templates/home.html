@@ -16,9 +16,9 @@
             </div>
             <div class="nav-buttons">
                 {% if user.is_authenticated %}
-                    <button class="btn btn-perfil">
+                    <a href="{% url 'user' %}" class="btn btn-perfil" >
                         <span>👤</span> {{ user.first_name|default:user.email }}
-                    </button>
+                    </a>
                     <a href="{% url 'logout' %}" class="btn btn-register">
                         <span>🚪</span> Cerrar Sesión
                     </a>
@@ -396,7 +396,7 @@
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <p>📧 info@agromarket.ec</p>
-                <p>📱 +593 99 123 4567</p>
+                <p>📱 +593 99 310 4567</p>
             </div>
             <div class="footer-section">
                 <h4>Síguenos</h4>
@@ -404,7 +404,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AgroMarket - Sistema de Agronomía. Todos los derechos reservados.</p>
+            <p>
+                <a>Facebook</a> |
+                <a>Instagram</a> |
+                <a>Twitter</a>
+            </p>
         </div>
     </footer>
 </body>
