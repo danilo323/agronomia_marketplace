@@ -1,0 +1,235 @@
+/* =====================================================
+   CONTENEDOR GENERAL DEL CARRITO
+===================================================== */
+.cart-container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Título */
+.cart-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Tabla */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th {
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* =====================================================
+   BOTONES PREMIUM VERDES (base)
+===================================================== */
+
+.premium-btn-base {
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%) !important;
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(17,153,142,0.3);
+    transition: .2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* Botón pequeño */
+.premium-btn-small {
+    padding: 6px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+/* Botón normal */
+.premium-btn {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+}
+
+/* Botón grande */
+.premium-btn-large {
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-size: 17px;
+}
+
+.premium-btn-base:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   BOTONES ROJOS (Eliminar / Cancelar / Vaciar)
+===================================================== */
+
+.red-btn {
+    background: #ff4e4e;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 22px;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(255, 78, 78, 0.4);
+    transition: .2s ease;
+}
+
+.red-btn:hover {
+    background: #e04343;
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   ASIGNACIÓN DE ESTILOS A LOS BOTONES DEL CARRITO
+===================================================== */
+
+/* Cantidad (+ y -) */
+.qty-btn {
+    padding: 6px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    color: white !important;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(17,153,142,0.3);
+    transition: .2s ease;
+    text-decoration: none;
+}
+
+.qty-btn:hover {
+    opacity: .85;
+    transform: translateY(-2px);
+}
+
+/* Eliminar producto */
+.remove-btn {
+    padding: 10px 22px;
+    background: #ff4e4e;
+    color: white !important;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(255,78,78,.4);
+    transition: .2s ease;
+}
+
+.remove-btn:hover {
+    background: #e04343;
+    transform: translateY(-2px);
+}
+
+/* Vaciar carrito */
+.clear-btn {
+    padding: 10px 22px;
+    background: #ff4e4e;
+    color: white !important;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(255,78,78,.4);
+    transition: .2s ease;
+}
+
+.clear-btn:hover {
+    background: #e04343;
+    transform: translateY(-2px);
+}
+
+/* Finalizar compra */
+.checkout-btn {
+    padding: 12px 26px;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    color: white !important;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(17,153,142,.3);
+    transition: .2s ease;
+}
+
+.checkout-btn:hover {
+    opacity: .85;
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   TOTALES
+===================================================== */
+.cart-total {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* =====================================================
+   BOTÓN VOLVER ATRÁS
+===================================================== */
+.back-btn {
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(17,153,142,0.3);
+    transition: .2s ease;
+}
+
+.back-btn:hover {
+    opacity: 0.85;
+    transform: translateX(-3px);
+}
+
+/* =====================================================
+   BOTÓN CANCELAR COMPRA
+===================================================== */
+.cancel-btn {
+    padding: 12px 26px;
+    background: #ff4e4e;
+    color: white !important;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 10px rgba(255,78,78,0.4);
+    transition: .2s ease;
+}
+
+.cancel-btn:hover {
+    background: #e04343;
+    transform: translateY(-3px);
+}

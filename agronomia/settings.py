@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #carrito de compras
+    'cart',
 
     #añadidas por el programador jijijiji
 
@@ -98,6 +101,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # ← AGREGAR ESTA LÍNEA
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart_item_count',
             ],
         },
     },

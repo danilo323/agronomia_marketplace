@@ -1,53 +1,88 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'shop.css' %}">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'shop.css' %}?v=5">
+</head>
 
-<h2>Catálogo de productos</h2>
+<body>
 
-<!-- BUSCADOR -->
-<form method="GET" class="search-box">
-    <input type="text" name="search" placeholder="Buscar productos..." value="{{ request.GET.search }}">
-    <button type="submit">Buscar</button>
-</form>
+<div class="shop-page">
+    
+    <div class="shop-container">
+            
+        <a href="{% url 'home' %}" class="back-btn">⬅ Volver al inicio</a>
 
-<!-- CATEGORÍAS -->
-<div class="category-wrapper">
-    <div class="category-container">
+        <h2>🛍 Catálogo de productos</h2>
         
-        {% for category in categories %}
-        <a href="?category={{ category.id }}" class="category-item">
-
-            <!-- Sticker HOT (opcional: puedes ponerlo según condiciones )-->
-            {% if category.hot %}
-            <span class="category-badge">HOT</span>
-            {% endif %}
-
-            <img src="{{ category.image.url }}" class="category-img">
-
-            <div class="category-name">{{ category.name }}</div>
-        </a>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- PRODUCTOS -->
-<div class="product-grid">
-
-    {% for product in products %}
-    <div class="product-card">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        <div class="product-name">{{ product.name }}</div>
-        <div class="product-price">${{ product.price }}</div>
-        <div class="product-description">{{ product.description|truncatewords:12 }}</div>
-        
-        <form method="POST" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <button type="submit" class="add-cart-btn">Añadir al carrito</button>
+        <!-- Buscador -->
+        <form method="GET" class="search-box">
+            <input type="text" name="search" placeholder="Buscar productos..." value="{{ request.GET.search }}">
+            <button type="submit">Buscar</button>
         </form>
 
-    </div>
-    {% empty %}
-    <p>No hay productos disponibles.</p>
-    {% endfor %}
+        <!-- CATEGORÍAS -->
+        <div class="category-wrapper">
+            <div class="category-container">
 
+                {% for category in categories %}
+                <a href="?category={{ category.id }}" class="category-item">
+
+                    {% if category.hot %}
+                    <span class="category-badge">HOT</span>
+                    {% endif %}
+
+                    <img src="{{ category.image.url }}" class="category-img">
+                    <div class="category-name">{{ category.name }}</div>
+
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <!-- PRODUCTOS -->
+        <div class="product-grid">
+
+            {% for product in products %}
+            <div class="product-card">
+
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+                <div class="product-name">{{ product.name }}</div>
+                <div class="product-price">${{ product.price }}</div>
+
+                <div class="product-description">
+                    {{ product.description|truncatewords:12 }}
+                </div>
+
+                <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="add-cart-btn">🛒 Añadir al carrito</button>
+                </form>
+
+            </div>
+            {% empty %}
+            <p>No hay productos disponibles.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+    
 </div>
+
+<!-- 🔥 BOTÓN FLOTANTE CORRECTAMENTE POSICIONADO -->
+{% if request.resolver_match.url_name != "user" %}
+<a href="{% url 'cart' %}" 
+    class="floating-cart-btn {% if cart_count > 0 %}cart-pulse{% endif %}">
+    🛒
+    {% if cart_count > 0 %}
+    <span class="cart-badge">{{ cart_count }}</span>
+    {% endif %}
+</a>
+{% endif %}
+
+</body>
+</html>

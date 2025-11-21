@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroMarket - Sistema de Agronomía</title>
     <link rel="stylesheet" href="{% static 'index.css' %}">
+    
 </head>
+<a href="{% url 'cart' %}" class="floating-cart-btn">
+    🛒
+    {% if cart_count > 0 %}
+    <span class="cart-badge">{{ cart_count }}</span>
+    {% endif %}
+</a>
 <body>
     <header>
         <nav>
@@ -15,6 +22,12 @@
                 <span class="logo-text">AgroMarket</span>
             </div>
             <div class="nav-buttons">
+                <a href="{% url 'shop' %}" class="btn btn-login">
+                    <span>🛍</span> Ver Productos
+                </a>
+                <a href="{% url 'cart' %}" class="btn btn-login">
+                    🛒 Carrito ({{ cart_count }})
+                </a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'user' %}" class="btn btn-perfil" >
                         <span>👤</span> {{ user.first_name|default:user.email }}
@@ -89,9 +102,9 @@
                                 <span class="precio">$5.50</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -110,9 +123,9 @@
                                 <span class="precio">$12.00</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -130,16 +143,16 @@
                                 <span class="precio">$8.00</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="ver-mas-container">
-                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+                <a href="{% url 'shop' %}?category=3" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
             </div>
 
         </section>
@@ -167,9 +180,9 @@
                                 <span class="precio">$15.00</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -188,9 +201,9 @@
                                 <span class="precio">$25.00</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
-                                <span>🛒</span> Agregar
-                            </button>
+                                <button class="btn-comprar">
+                                    <span>🛒</span> Agregar
+                                </button>
                         </div>
                     </div>
                 </div>
@@ -208,16 +221,16 @@
                                 <span class="precio">$7.50</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="ver-mas-container">
-                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+                <a href="{% url 'shop' %}?category=4" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
             </div>
 
         </section>
@@ -266,9 +279,9 @@
                                 <span class="precio">$1.20</span>
                                 <span class="precio-unit">/litro</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -286,16 +299,16 @@
                                 <span class="precio">$6.50</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="ver-mas-container">
-                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+                <a href="{% url 'shop' %}?category=2" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
             </div>
 
         </section>
@@ -323,9 +336,9 @@
                                 <span class="precio">$2.00</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -344,9 +357,9 @@
                                 <span class="precio">$2.50</span>
                                 <span class="precio-unit">/kg</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -365,16 +378,16 @@
                                 <span class="precio">$1.80</span>
                                 <span class="precio-unit">/unidad</span>
                             </div>
-                            <button class="btn-comprar">
+                            <a href="{% url 'shop' %}" class="btn btn-login">
                                 <span>🛒</span> Agregar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="ver-mas-container">
-                <a href="#" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
+                <a href="{% url 'shop' %}?category=1" class="btn btn-ver-mas">Ver más <span>&rarr;</span></a>
             </div>
 
         </section>
@@ -418,10 +431,10 @@
         <div class="chatbot-footer">
             <div class="chatbot-input-container">
                 <textarea id="chatbot-input"
-                          class="chatbot-input"
-                          rows="2"
-                          maxlength="150"
-                          placeholder="Escribe tu pregunta (máximo 150 caracteres)..."></textarea>
+                        class="chatbot-input"
+                        rows="2"
+                        maxlength="150"
+                        placeholder="Escribe tu pregunta (máximo 150 caracteres)..."></textarea>
                 <div class="chatbot-footer-bottom">
                     <span id="chatbot-char-count" class="chatbot-char-count">0/150</span>
                     <button id="chatbot-send" class="chatbot-send-btn" disabled>Enviar</button>
@@ -436,6 +449,9 @@
                 <h4>🌱 AgroMarket</h4>
                 <p>Conectando el campo con tu hogar desde 2025</p>
             </div>
+            <a href="{% url 'shop' %}" class="btn-comprar" style="padding: 12px 25px; background:#4CAF50; color:white; border-radius:6px; text-decoration:none; font-size:18px;">
+                🛍 Ir a la Tienda
+            </a>
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <p>📧 info@agromarket.ec</p>

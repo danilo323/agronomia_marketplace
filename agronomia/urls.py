@@ -25,7 +25,8 @@ urlpatterns = [
     path('', include('web.urls')),
     path('', include('chatbot.urls')),
 
-
+    # carrito de compras
+    path("cart/", include("cart.urls")),
 
     #google 
     path('accounts/', include('allauth.urls')),

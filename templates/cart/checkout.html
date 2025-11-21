@@ -1,0 +1,39 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'cart.css' %}">
+
+<div class="cart-container">
+    <h2 class="cart-title">🧾 Checkout</h2>
+
+    <p>Revisa tus datos y completa tu compra.</p>
+
+    <h3>Resumen del pedido</h3>
+    <ul>
+        {% for id, item in cart.items %}
+            <li>{{ item.quantity }} × {{ item.name }} — ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="cart-total">
+        Total a pagar: ${{ total|floatformat:2 }}
+    </div>
+
+    <h3>Datos del comprador</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Nombre completo</label>
+        <input type="text" name="full_name" required>
+
+        <label>Dirección</label>
+        <input type="text" name="address" required>
+
+        <label>Teléfono</label>
+        <input type="text" name="phone" required>
+
+        <a href="{% url 'home' %}" class="cancel-btn">✖ Cancelar compra</a>
+
+        <button class="checkout-btn" type="submit">Confirmar compra</button>
+    </form>
+</div>

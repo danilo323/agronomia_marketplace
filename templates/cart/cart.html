@@ -1,0 +1,62 @@
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+    <a href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}{% url 'shop' %}{% endif %}" 
+        class="back-btn">
+        ⬅ Regresar
+    </a>
+    <div class="cart-container">
+
+        <h2 class="cart-title">🛒 Carrito de Compras</h2>
+        
+
+
+        {% if cart %}
+
+        <table class="cart-table">
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+
+            {% for id, item in cart.items %}
+            <tr>
+                <td>
+                    <img src="{{ item.image }}" class="cart-product-img">
+                    {{ item.name }}
+                </td>
+
+                <td>${{ item.price }}</td>
+
+                <td>
+                    <a href="{% url 'subtract_from_cart' id %}" class="qty-btn">−</a>
+                    {{ item.quantity }}
+                    <a href="{% url 'add_to_cart' id %}" class="qty-btn">+</a>
+                </td>
+
+                <td>${{ item.price|floatformat:2 }}</td>
+
+                <td>
+                    <a href="{% url 'remove_from_cart' id %}" class="remove-btn">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <div class="cart-total">
+            Total: ${{ total|floatformat:2 }}
+        </div>
+
+        <a href="{% url 'clear_cart' %}" class="clear-btn">Vaciar carrito</a>
+        <a href="{% url 'checkout' %}" class="checkout-btn">Finalizar compra ➤</a>
+
+        {% else %}
+
+        <p>Tu carrito está vacío.</p>
+
+        {% endif %}
+    </div>
