@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'web',
     'chatbot',
+    'productos',
 
 ]
 
@@ -190,3 +191,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False      # No pedimos un 'username', el email es suficiente
 ACCOUNT_AUTHENTICATION_METHOD = 'email' # Permitir iniciar sesión escribiendo el email
 SOCIALACCOUNT_LOGIN_ON_GET = True # no perdi permiso y django
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
