@@ -79,3 +79,5 @@ def signup_view(request):
     
     return render(request, 'signup.html')
 
+def user_profile(request):
+    return render(request, 'user.html')
