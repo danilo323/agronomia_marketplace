@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from cart.cart import Cart
 from .models import Product, Category
 
 def shop(request):
@@ -21,22 +22,29 @@ def shop(request):
     })
     
 def add_to_cart(request, product_id):
+    cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-
-    cart = request.session.get("cart", {})
-
-    # si el producto ya existe, sumar +1
-    if str(product_id) in cart:
-        cart[str(product_id)]["quantity"] += 1
-    else:
-        cart[str(product_id)] = {
-            "name": product.name,
-            "price": float(product.price),
-            "image": product.image.url,
-            "quantity": 1,
-        }
-
-    request.session["cart"] = cart
-    return redirect("shop")
+    cart.add(product)
+    return redirect("cart")
+    
+    
+#def add_to_cart(request, product_id):
+#    product = get_object_or_404(Product, id=product_id)
+#
+#    cart = request.session.get("cart", {})
+#
+#    # si el producto ya existe, sumar +1
+#    if str(product_id) in cart:#
+#        cart[str(product_id)]["quantity"] += 1
+#    else:
+#        cart[str(product_id)] = {
+#            "name": product.name,
+#            "price": float(product.price),
+#            "image": product.image.url,
+#            "quantity": 1,
+#        }
+#
+#    request.session["cart"] = cart
+#    return redirect("shop")
 
 ################
