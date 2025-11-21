@@ -3,71 +3,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <div class="profile-container">
+    
+    <div class="floating-shape shape-1">⭐</div>
+    <div class="floating-shape shape-2">🚀</div>
+    <div class="floating-shape shape-3">💡</div>
+    <div class="floating-shape shape-4">✨</div>
+    
+    <div class="profile-container">
+        
+        <a href="{% url 'home' %}" class="back-btn" style="
+            padding: 10px 18px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;">
+            ⬅ Atrás
+        </a>
+
+
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="django-message {{ message.tags }}" style="display:block;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
         <div class="profile-header">
-            <img src="https://via.placeholder.com/150" alt="Imagen de Perfil" id="profile-image">
-            <button class="edit-btn">Cambiar Foto</button>
+            <div class="avatar">
+                <img id="profile-image" alt="" src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'images/default_user.svg' %}{% endif %}">
+            </div>
+            <div class="photo-actions" style="margin-top:12px; display:flex; gap:10px; justify-content:center;">
+                <button type="button" class="edit-btn">Cambiar Foto</button>
+                
+            </div>
+        </div>
+
+        <div class="user-info">
+            <h2>Información del Usuario</h2>
             
-            <!-- Input oculto para subir foto -->
-            <input type="file" id="profile-input" accept="image/*" style="display:none;">
-        </div>
+            <form id="info-form" action="{% url 'user' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %} 
+            
+                <div class="info-item">
+                    <label for="username">Nombre de Usuario:</label>
+                    <input type="text" id="username" name="username" value="{{ user.username }}" readonly required>
+                    <p id="username-error" class="validation-error hidden"></p>
+                </div>
+                <div class="info-item">
+                    <label for="full-name">Nombres y Apellidos:</label>
+                    <input type="text" id="full-name" name="full-name" value="{{ user.first_name }} {{ user.last_name }}" readonly>
+                    <p id="full-name-error" class="validation-error hidden"></p>
+                </div>
+                <div class="info-item">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+                    <p id="email-error" class="validation-error hidden"></p>
+                </div>
+                <input type="file" id="profile-input" name="profile_picture" accept="image/*" style="display:none;">
+                <input type="hidden" name="form_type" value="profile_update">
+                
+                <button type="button" class="edit-info-btn">Editar Información</button>
+            </form>
+                    </div>
 
-        <div class="user-info">
-            <h2>Información del Usuario</h2>
-            <div class="info-item">
-                <label for="username">Nombre de Usuario:</label>
-                <input type="text" id="username" value="{{ user.username }}" readonly>
-            </div>
-            <div class="info-item">
-                <label for="full-name">Nombres y Apellidos:</label>
-                <input type="text" id="full-name" value="{{ user.first_name }} {{ user.last_name }}" readonly>
-            </div>
-            <div class="info-item">
-                <label for="email">Email:</label>
-                <input type="email" id="email" value="{{ user.email }}" readonly>
-            </div>
-            <button class="edit-info-btn">Editar Información</button>
-        </div>
-
-        <div class="password-change">
-            <h2>Cambiar Contraseña</h2>
-            <form id="password-form">
+    <div class="password-change">
+        <h2>Cambiar Contraseña</h2>
+            <form id="password-form" method="POST" action="{% url 'user' %}">
+                {% csrf_token %} 
+                <input type="hidden" name="form_type" value="password_change">
                 <div class="info-item">
                     <label for="current-password">Contraseña Actual:</label>
-                    <input type="password" id="current-password" required>
+                    <div class="password-wrapper" style="display:flex; gap:8px; align-items:center;">
+                        <input type="password" id="current-password" name="current-password" required>
+                        <button type="button" class="toggle-pass" data-target="current-password" aria-label="Mostrar contraseña">👁️</button>
+                    </div>
                 </div>
                 <div class="info-item">
                     <label for="new-password">Nueva Contraseña:</label>
-                    <input type="password" id="new-password" required>
+                    <div class="password-wrapper" style="display:flex; gap:8px; align-items:center;">
+                        <input type="password" id="new-password" name="new-password" required>
+                        <button type="button" class="toggle-pass" data-target="new-password" aria-label="Mostrar contraseña">👁️</button>
+                    </div>
                 </div>
                 <div class="info-item">
                     <label for="confirm-password">Confirmar Contraseña:</label>
-                    <input type="password" id="confirm-password" required>
+                    <div class="password-wrapper" style="display:flex; gap:8px; align-items:center;">
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <button type="button" class="toggle-pass" data-target="confirm-password" aria-label="Mostrar contraseña">👁️</button>
+                    </div>
                 </div>
                 <button type="submit" class="change-password-btn">Guardar Nueva Contraseña</button>
             </form>
-            <p id="message" class="hidden"></p>
-        </div>
-    </div>
+            <p id="message" class="hidden"></p>
+        </div>
+    </div>
 
-    <!-- Modal de recorte -->
-    <div id="cropper-modal" class="cropper-modal hidden">
-        <div class="cropper-content">
-            <canvas id="cropper-canvas"></canvas>
-
-            <div class="cropper-buttons">
-                <button id="cancel-crop" class="cancel-btn">Cancelar</button>
-                <button id="apply-crop" class="apply-btn">Aplicar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="{% static 'js/user_script.js' %}"></script>
+        <script src="{% static 'js/user_script.js' %}"></script>
 </body>
 </html>
